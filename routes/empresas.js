@@ -38,4 +38,15 @@ router.post('/', function (req, res) {
 		});
 });
 
+// Formulário de cadastro de nova senha
+router.get('/:id/senhas/nova', function (req, res) {
+	Empresas.findOne({
+		_id: req.params.id
+	}, function (err, e) {
+		res.render('empresas/senhas/nova', {
+			empresa: e
+		});
+	});
+});
+
 module.exports = router;
