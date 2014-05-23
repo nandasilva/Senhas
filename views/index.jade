@@ -1,0 +1,20 @@
+extends layout
+
+block content
+	.content
+		h1.title-master Empresas
+			a.btn.btn-success(href='/empresas/nova') Nova Empresa
+
+		table.table
+			thead
+				tr
+					th Empresa
+					th Opções
+			tbody
+				for e in empresas
+					tr
+						td #{e.nome}
+						td
+							a.btn.btn-success(href='/empresas/#{e._id}') Ver/Editar
+							a.btn.btn-danger(href='#') Excluir
+

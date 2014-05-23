@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+	h1 Cadastrar Empresa
+
+	form.form(method='post', action='/empresas')
+		.form-group
+			label Nome da Empresa
+			input.form-control(type='text', name='nome', required)
+
+		.form-group
+			label Link
+			input.form-control(type='text', name='link', placeholder="http://")
+
+		.form-group
+			label Logo
+			input.form-control(type='text', name='logo')
+
+		.form-group
+			label Telefone
+			input.form-control(type='text', name='telefone')
+
+		input.btn.btn-primary(type='submit', value='Cadastrar')

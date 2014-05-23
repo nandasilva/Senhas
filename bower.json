@@ -1,0 +1,21 @@
+{
+  "name": "Senhas",
+  "version": "0.0.1",
+  "authors": [
+    "Cezar Luiz <cezarluiz.c@gmail.com>"
+  ],
+  "description": "Um sistema simples para gerenciar senhas",
+  "main": "app.js",
+  "license": "MIT",
+  "directory": "public/components",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}
