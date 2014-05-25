@@ -20,7 +20,7 @@ var PasswordsSchema = new Schema({
 var EmpresasSchema = new Schema({
 	nome: { type: String, default: '' },
 	link: { type: String, default: '' },
-	logo: { type: String, default: '' },
+	logo: Schema.Types.Mixed,
 	telefone: { type: String, default: '' },
 }, options);
 

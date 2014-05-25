@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var fs = require('fs');
+
 var mongoose = require('mongoose');
 var Empresas = mongoose.model('Empresas');
 var Passwords = mongoose.model('Passwords');
@@ -29,7 +31,12 @@ router.get('/:id', function (req, res) {
 	});
 });
 
+// Cadastrar uma nova empresa no banco
 router.post('/', function (req, res) {
+
+	// Atualiza imagem
+	req.body.logo = req.files.logo;
+
 	new Empresas(req.body)
 		.save(function (err, e) {
 			if (!err) {

@@ -1,7 +1,7 @@
 extends layout
 
 block content
-	img.img-circle(src=e.logo ? e.logo : 'http://dummyimage.com/90/#ccc/fff.png')
+	img.img-circle(src=e.logo ? '/uploads/' + e.logo.name : 'http://dummyimage.com/90/#ccc/fff.png')
 
 	h1= e.nome
 		a.btn.btn-primary(href='/empresas/#{e._id}/editar') Editar

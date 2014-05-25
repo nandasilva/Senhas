@@ -3,7 +3,7 @@ extends ../layout
 block content
 	h1 Cadastrar Empresa
 
-	form.form(method='post', action='/empresas')
+	form.form(method='post', action='/empresas', enctype='multipart/form-data')
 		.form-group
 			label Nome da Empresa
 			input.form-control(type='text', name='nome', required)
@@ -14,7 +14,7 @@ block content
 
 		.form-group
 			label Logo
-			input.form-control(type='text', name='logo')
+			input.form-control(type='file', name='logo')
 
 		.form-group
 			label Telefone
