@@ -1,7 +1,7 @@
 Senhas
 ======
 
-Um simples gerenciador de senhas para setor de desenvolvimento/produção
+Sistema para gerenciar dados para serem compartilhados com o setor de T.I das empresas, dados como FTP, senhas de painéis, emails, etc.
 
 Para instalar digite o comando no terminal
 
@@ -10,3 +10,24 @@ Para instalar digite o comando no terminal
 Para rodar o sistema:
 
 	node app.js
+
+### Front-end
+
+* HTML5
+* CSS3
+* Javascript
+
+### Back-end
+
+* NodeJS
+* MongoDB
+
+### Tecnologias
+
+* Twitter Bootstrap
+* Express
+* Jade
+
+### Arquiteturas
+
+* REST + MVC
