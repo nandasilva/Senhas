@@ -1,0 +1,34 @@
+.btn {
+	margin-right: 5px;
+}
+
+.empresa-logo {
+	margin-right: 10px;
+}
+
+/**
+ * Table sorter
+ */
+.tablesorter-header {
+	position: relative;
+	cursor: pointer;
+}
+
+.tablesorter-header::after {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	color: #000;
+	font-size: 16px;
+	font-weight: 700;
+	color: #999;
+	content: '↔︎';
+}
+
+.tablesorter-headerAsc::after {
+	content: '↑';
+}
+
+.tablesorter-headerDesc::after {
+	content: '↓';
+}

@@ -1,8 +1,25 @@
 doctype html
-html
+html(ng-app="App")
 	head
 		title= title
 		link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.min.css')
-	body
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body(ng-controller="AppController")
+		if messages.ok
+			div.alert.alert-success.text-center
+				strong Sucesso! 
+				| !{messages.ok}
+
+		if messages.erro
+			div.alert.alert-error.text-center
+				strong Oops..! 
+				| !{messages.erro}
+
 		.container
 			block content
+
+		script(src="/components/jquery/dist/jquery.min.js")
+		script(src="/components/angular/angular.min.js")
+		script(src="/components/jquery.tablesorter/js/jquery.tablesorter.min.js")
+		script(src="/components/jquery.tablesorter/js/jquery.tablesorter.widgets.min.js")
+		script(src="/js/main.js")

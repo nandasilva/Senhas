@@ -1,7 +1,9 @@
 extends ../layout
 
 block content
-	h1 Cadastrar Empresa
+	h1
+		a.btn.btn-primary.btn-xs(href="/") Voltar
+		| Cadastrar Empresa
 
 	form.form(method='post', action='/empresas', enctype='multipart/form-data')
 		.form-group
@@ -10,7 +12,7 @@ block content
 
 		.form-group
 			label Link
-			input.form-control(type='text', name='link', placeholder="http://")
+			input.form-control(type='url', name='link', placeholder="http://")
 
 		.form-group
 			label Logo

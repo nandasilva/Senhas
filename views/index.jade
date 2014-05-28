@@ -2,10 +2,10 @@ extends layout
 
 block content
 	.content
-		h1.title-master Empresas
-			a.btn.btn-success(href='/empresas/nova') Nova Empresa
+		h1 Empresas 
+			a.btn.btn-success.btn-xs(href='/empresas/nova') Nova Empresa
 
-		table.table
+		table.table.table-hover.table-striped
 			thead
 				tr
 					th Empresa
@@ -15,6 +15,6 @@ block content
 					tr
 						td #{e.nome}
 						td
-							a.btn.btn-success(href='/empresas/#{e._id}') Ver/Editar
-							a.btn.btn-danger(href='#') Excluir
+							a.btn.btn-success.btn-xs(href='/empresas/#{e._id}') Ver/Editar
+							a.btn.btn-danger.btn-xs.excluir(href='/empresas/#{e._id}/excluir') Excluir
 

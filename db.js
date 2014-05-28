@@ -12,6 +12,7 @@ var PasswordsSchema = new Schema({
 	login: { type: String, default: '' },
 	password: { type: String, default: '' },
 	type: { type: String, default: '' },
+	outros: { type: String, default: '' },
 	empresa: { type: Schema.Types.ObjectId, ref: 'Empresas' },
 }, options);
 

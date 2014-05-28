@@ -7,9 +7,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var flash = require('express-flash');
+var session = require('express-session');
 
-var routes = require('./routes/index');
-var empresas = require('./routes/empresas');
 
 var app = express();
 
@@ -21,9 +21,15 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(cookieParser('ilovemom'));
 app.use(multer({ dest: './public/uploads' }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({cookie: { maxAge: 60000 }}));
+app.use(flash());
+
+// Rotas
+var routes = require('./routes/index');
+var empresas = require('./routes/empresas');
 
 app.use('/', routes);
 app.use('/empresas', empresas);

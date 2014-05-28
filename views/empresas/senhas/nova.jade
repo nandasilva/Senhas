@@ -1,23 +1,37 @@
 extends ../../layout
 
 block content
-	h1 Cadastrar Senha
+	h1
+		a.btn.btn-primary.btn-xs(href="/empresas/#{empresa._id}") Voltar
+		| Cadastrar Senha 
+		small= empresa.nome
 
-	form.form(method='post', action='/empresas')
+	form.form(method='post', action='/empresas/#{empresa._id}/senhas')
 		.form-group
-			label Nome da Empresa
+			label Nome
 			input.form-control(type='text', name='nome', required)
 
 		.form-group
 			label Link
-			input.form-control(type='text', name='link', placeholder="http://")
+			input.form-control(type='url', name='link', placeholder="http://")
 
 		.form-group
-			label Logo
-			input.form-control(type='text', name='logo')
+			label Login
+			input.form-control(type='text', name='login', required)
 
 		.form-group
-			label Telefone
-			input.form-control(type='text', name='telefone')
+			label Senha
+			input.form-control(type='text', name='password', required)
+
+		.form-group
+			label Tipo
+			select.form-control
+				option(value="Painel de Controle") Painel de Controle
+				option(value="Email") Email
+				option(value="FTP") FTP
+
+		.form-group
+			label Outros
+			textarea.form-control(name="outros")
 
 		input.btn.btn-primary(type='submit', value='Cadastrar')

@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+	h1
+		a.btn.btn-xs.btn-primary(href='/empresas/#{empresa._id}') Voltar
+		|  Editar | #{empresa.nome}
+
+	form.form(method='post', action='/empresas/#{empresa._id}', enctype='multipart/form-data')
+		.form-group
+			label Nome da Empresa
+			input.form-control(type='text', name='nome', value=empresa.nome, required)
+
+		.form-group
+			label Link
+			input.form-control(type='url', name='link', placeholder="http://", value=empresa.link)
+
+		.form-group
+			label Logo
+			input.form-control(type='file', name='logo')
+
+		.form-group
+			label Logo atual
+			br
+			img.img-rounded(width=150, src=empresa.logo ? '/uploads/' + empresa.logo.name : 'http://dummyimage.com/150/#ccc/fff.png')
+
+
+		.form-group
+			label Telefone
+			input.form-control(type='text', name='telefone', value=empresa.telefone)
+
+		input.btn.btn-success(type='submit', value='Editar')

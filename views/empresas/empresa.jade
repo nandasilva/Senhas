@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+	h1
+		img.img-circle.empresa-logo(width=50, src=e.logo ? '/uploads/' + e.logo.name : 'http://dummyimage.com/150/#ccc/fff.png')
+		| !{e.nome} 
+		a.btn.btn-primary.btn-xs(href='/empresas/#{e._id}/editar') Editar
+		a.btn.btn-danger.btn-xs.excluir(href='/empresas/#{e._id}/excluir') Excluir
+		a.btn.btn-default.btn-xs(href='/') Ver todas empresas
+
+	ul.empresa-info
+		if e.link
+			li <strong>Site:</strong> 
+				a(href=e.link, target="_blank") Visitar site
+
+		if e.telefone
+			li <strong>Telefone:</strong> #{e.telefone}
+
+	h3 Senhas 
+		a.btn.btn-success.btn-xs(href='/empresas/#{e._id}/senhas/nova') Nova Senha
+
+	if senhas.length
+		table.table.table-hover.table-striped
+			thead
+				tr
+					th Nome
+					th Link
+					th Tipo
+					th Login
+					th Senha
+					th Opções
+			tbody
+				for senha in senhas
+					tr
+						td= senha.nome
+						td
+							if senha.link
+								a(href=senha.link, target="_blank") Ver Link
+							else
+								| -
+						td= senha.type
+						td= senha.login
+						td= senha.password
+						td
+							a.btn.btn-success.btn-xs(href='/empresas/#{e._id}') Ver/Editar
+							a.btn.btn-danger.btn-xs(href='#') Excluir
+
+	else
+		p Nenhuma senha cadastrada.
