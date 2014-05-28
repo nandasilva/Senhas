@@ -25,3 +25,5 @@ build/Release
 node_modules
 
 public/components
+
+public/uploads/*
