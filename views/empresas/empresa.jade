@@ -2,7 +2,7 @@ extends ../layout
 
 block content
 	h1
-		img.img-circle.empresa-logo(width=50, src=e.logo ? '/uploads/' + e.logo.name : 'http://dummyimage.com/150/#ccc/fff.png')
+		img.img-circle.empresa-logo(width=50, src=e.logo.size ? '/uploads/' + e.logo.name : 'http://lorempixel.com/150/150/abstract/')
 		| !{e.nome} 
 		a.btn.btn-primary.btn-xs(href='/empresas/#{e._id}/editar') Editar
 		a.btn.btn-danger.btn-xs.excluir(href='/empresas/#{e._id}/excluir') Excluir
@@ -43,7 +43,7 @@ block content
 						td= senha.password
 						td
 							a.btn.btn-success.btn-xs(href='/empresas/#{e._id}') Ver/Editar
-							a.btn.btn-danger.btn-xs(href='#') Excluir
+							a.btn.btn-danger.btn-xs.excluir(href='/empresas/#{e._id}/senhas/#{senha._id}/excluir') Excluir
 
 	else
 		p Nenhuma senha cadastrada.

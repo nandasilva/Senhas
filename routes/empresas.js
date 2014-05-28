@@ -8,7 +8,9 @@ var Passwords = mongoose.model('Passwords');
 
 /* GET home page. */
 router.get('/', function(req, res) {
+	// Lista todas as empresas
 	Empresas.find(function (err, empresas) {
+		// Renderiza a index
 		res.render('index', {
 			empresas: empresas,
 			title: 'Empresas'
@@ -16,43 +18,70 @@ router.get('/', function(req, res) {
 	});
 });
 
+/**
+ * /empresas/nova
+ * Formulário para cadastrar uma nova empresa
+ */
 router.get('/nova', function (req, res) {
 	res.render('empresas/nova', {
 		title: 'Cadastrar Empresa'
 	});
 });
 
-// Resgata 1 empresa
+/**
+ * /empresas/:id
+ * Resgata uma empresa específica
+ */
 router.get('/:id', function (req, res) {
+	// Procura uma empresa por um ID
 	Empresas.findOne({
 		_id: req.params.id
 	})
 	.exec(function (err, empresa) {
-		Passwords
-			.find({
-				empresa: empresa._id
-			})
-			.sort('nome')
-			.sort('type')
-			.exec(function (err, senhas) {
-				res.render('empresas/empresa', {
-					e: empresa,
-					senhas: senhas,
-					title: 'Empresa | ' + empresa.nome
+		// Se a empresa foi encontrada
+		if (!err) {
+			// Procura pelas senhas da empresa
+			Passwords
+				.find({
+					empresa: empresa._id
+				})
+				.sort('nome')
+				.sort('type')
+				.exec(function (err, senhas) {
+					res.render('empresas/empresa', {
+						e: empresa,
+						senhas: senhas,
+						title: 'Empresa | ' + empresa.nome
+					});
 				});
-			});
+		}
+		else {
+			req.flash('erro', 'Nenhuma empresa encontrada.');
+			res.redirect('/');
+		}
 	});
 });
 
-// Cadastrar uma nova empresa no banco
+/**
+ * POST /empresas
+ * Cadastrar uma nova empresa no banco
+ */
 router.post('/', function (req, res) {
 
-	// Atualiza imagem
+	// Atualiza imagem para passar para o banco
 	req.body.logo = req.files.logo;
 
+	// Instancia nova empresa e passa
+	// o corpo da request
 	new Empresas(req.body)
 		.save(function (err, e) {
+			// Se inseriu...
 			if (!err) {
+				req.flash('ok', 'Empresa <strong>' + e.nome + '</strong> criada.');
+				res.redirect('/empresas/' + e._id);
+			}
+			else {
+				req.flash('erro', 'Não foi possível adicionar uma nova empresa, por favor, tente novamente.');
 				res.redirect('/');
 			}
 		});
@@ -92,14 +121,12 @@ router.post('/:id', function (req, res) {
  * Deletar uma empresa do banco
  */
 router.get('/:id/excluir', function (req, res) {
-	Empresas.findOne({
+	var empresa = Empresas.findOne({
 		_id: req.params.id
 	}, function (err, e) {
 		if (!err) {
-			Empresas
-				.remove({
-					_id: req.params.id
-				})
+			empresa
+				.remove()
 				.exec(function (err) {
 					if (!err) {
 						req.flash('ok', 'Empresa removida!');
@@ -136,6 +163,25 @@ router.post('/:id/senhas', function (req, res) {
 			});
 });
 
+router.get('/:id/senhas/:senha/excluir', function (req, res) {
+
+	var senhaExcluida = Passwords.findOne({
+		_id: req.params.senha
+	}, function (err, s) {
+		if (!err) {
+			senhaExcluida
+				.remove()
+				.exec(function (err) {
+					req.flash('ok', 'Senha <strong>' + s.nome + '</strong> excluída.');
+					res.redirect('/empresas/' + req.params.id);
+				});
+		}
+		else {
+			req.flash('erro', 'Nenhuma senha foi encontrada.');
+			res.redirect('/empresas/' + req.params.id);
+		}
+	});
+});
 
 
 
