@@ -13,7 +13,9 @@ block content
 			tbody
 				for e in empresas
 					tr
-						td #{e.nome}
+						td
+							img.img-circle.empresa-logo(width=20, src=e.logo.size ? '/uploads/' + e.logo.name : 'http://lorempixel.com/150/150/abstract/10/')
+							| #{e.nome}
 						td
 							a.btn.btn-success.btn-xs(href='/empresas/#{e._id}') Ver/Editar
 							a.btn.btn-danger.btn-xs.excluir(href='/empresas/#{e._id}/excluir') Excluir

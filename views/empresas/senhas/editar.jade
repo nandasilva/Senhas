@@ -1,0 +1,37 @@
+extends ../../layout
+
+block content
+	h1
+		a.btn.btn-primary.btn-xs(href="/empresas/#{empresa._id}") Voltar
+		| Editar Senha 
+		small= senha.nome
+
+	form.form(method='post', action='/empresas/#{empresa._id}/senhas/#{senha._id}')
+		.form-group
+			label Nome
+			input.form-control(type='text', name='nome', value=senha.nome, required)
+
+		.form-group
+			label Link
+			input.form-control(type='url', name='link', value=senha.link, placeholder="http://")
+
+		.form-group
+			label Login
+			input.form-control(type='text', name='login', value=senha.login, required)
+
+		.form-group
+			label Senha
+			input.form-control(type='text', name='password', value=senha.password, required)
+
+		.form-group
+			label Tipo
+			select.form-control(name='type')
+				option(value="Painel de Controle", selected=senha.type == 'Painel de Controle' ? 'selected' : false) Painel de Controle
+				option(value="Email", selected=senha.type == 'Email' ? 'selected' : false) Email
+				option(value="FTP", selected=senha.type == 'FTP' ? 'selected' : false) FTP
+
+		.form-group
+			label Outros
+			textarea.form-control(name="outros")= senha.outros
+
+		input.btn.btn-primary(type='submit', value='Editar')

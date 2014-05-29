@@ -2,7 +2,7 @@ extends ../layout
 
 block content
 	h1
-		img.img-circle.empresa-logo(width=50, src=e.logo.size ? '/uploads/' + e.logo.name : 'http://lorempixel.com/150/150/abstract/')
+		img.img-circle.empresa-logo(width=50, src=e.logo.size ? '/uploads/' + e.logo.name : 'http://lorempixel.com/150/150/abstract/10/')
 		| !{e.nome} 
 		a.btn.btn-primary.btn-xs(href='/empresas/#{e._id}/editar') Editar
 		a.btn.btn-danger.btn-xs.excluir(href='/empresas/#{e._id}/excluir') Excluir
@@ -42,7 +42,7 @@ block content
 						td= senha.login
 						td= senha.password
 						td
-							a.btn.btn-success.btn-xs(href='/empresas/#{e._id}') Ver/Editar
+							a.btn.btn-success.btn-xs(href='/empresas/#{e._id}/senhas/#{senha._id}') Ver/Editar
 							a.btn.btn-danger.btn-xs.excluir(href='/empresas/#{e._id}/senhas/#{senha._id}/excluir') Excluir
 
 	else

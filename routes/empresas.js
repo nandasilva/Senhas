@@ -163,6 +163,37 @@ router.post('/:id/senhas', function (req, res) {
 			});
 });
 
+// Formulário de edição
+router.get('/:id/senhas/:senha', function (req, res) {
+	Empresas.findOne({
+		_id: req.params.id
+	}, function (err, e) {
+		Passwords.findOne({
+			_id: req.params.senha
+		}, function (err, s) {
+			res.render('empresas/senhas/editar', {
+				empresa: e,
+				senha: s,
+				title: 'Editar Senha | ' + e.nome
+			});
+		})
+	});
+});
+
+// Edita a senha no banco de dados
+router.post('/:id/senhas/:senha', function (req, res) {
+	Passwords
+		.update({
+			_id: req.params.senha
+		}, req.body)
+		.exec(function (err) {
+			if (!err) {
+				req.flash('ok', 'Senha <strong>' + req.body.nome + '</strong> atualizada.');
+				res.redirect('/empresas/' + req.params.id);
+			}
+		});
+});
+
 router.get('/:id/senhas/:senha/excluir', function (req, res) {
 
 	var senhaExcluida = Passwords.findOne({
