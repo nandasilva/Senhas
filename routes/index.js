@@ -4,8 +4,12 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Empresas = mongoose.model('Empresas');
 
-/* GET home page. */
+/**
+ * GET /
+ * Página principal, lista as empresas cadastradas
+ */
 router.get('/', function(req, res) {
+	// Lista todas as empresas e ordena por nome
 	Empresas
 		.find()
 		.sort('nome')

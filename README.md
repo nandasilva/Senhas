@@ -6,7 +6,7 @@ Sistema para gerenciar dados para serem compartilhados com o setor de T.I das em
 Para instalar digite o comando no terminal
 
 	[sudo] npm install && bower install
-	
+
 Para rodar o sistema:
 
 	node app.js

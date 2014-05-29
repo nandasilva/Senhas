@@ -31,4 +31,4 @@ mongoose.model('Passwords', PasswordsSchema);
 mongoose.model('Empresas', EmpresasSchema);
 
 // Connect on mongodb
-mongoose.connect('mongodb://senhas:senhas@novus.modulusmongo.net:27017/yjEqez3i');
+mongoose.connect('mongodb://localhost:27017/passwords');
